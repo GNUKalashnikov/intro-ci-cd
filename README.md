@@ -81,9 +81,11 @@ A access and secret would need to be inputted so that I can interact with aws.
 
 
 
-### Pipeline
+### Pipeline 1 | 2
 Pick a name and pick *pipeline*
 This would be the pipeline or *job* that would
+
+Make sure to [follow](https://github.com/GNUKalashnikov/iac) and use the command to install ansible
 
 ```
 pipeline {
@@ -111,3 +113,22 @@ pipeline {
 }
 ```
 
+### Pipeline 2 | 2
+
+```
+pipeline {
+    agent any
+    stages{
+        stage('execute playbooks'){
+            steps {
+                dir('terra'){
+                ansiblePlaybook credentialsId: 'eng99', disableHostKeyChecking: true, installation: 'ansible2', inventory: 'hosts.inv', playbook: 'playbookofplaybooks.yml'
+                }
+
+            }
+
+        }
+    }
+}
+
+```
